@@ -40,7 +40,7 @@ function Navbar() {
     <>
       <nav className={navbar ? 'navbar active' :'navbar'}>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu} style={{'font-family': 'Audiowide'}}>
+          <Link to='/' className='navbar-logo' onClick={closeMobileMenu} style={{'fontFamily': 'Audiowide'}}>
             Flex DevsKe
             <i className="fa fa-cubes ml2" aria-hidden="true"></i>
           </Link>

@@ -52,6 +52,9 @@
 }
 
 
+		
+
+
 
 @media screen and (max-width: 960px){
 	.header-margin-top-on-mobile-fix{
@@ -66,20 +69,26 @@
 	.contact-main-flex{
 		display: block;
 
-		width: 100%;
-		margin-left: 0px !important;
-		margin-right: 0px !important;
-		padding-left: 0px;
-		padding-right: 0px;
-	}
-		
-	.contact-getintouch-width{
-		width: 100% !important;
+		width:82.4% !important;
 		margin-left: 8.8% !important;
 		margin-right: 8.8% !important;
+		
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
 
-		padding-left: 0px;
-		padding-right: 0px;
+	.actual-form-padding {
+		padding: 6% !important;
+	}
+	.contact-headings-on-mobile{
+		font-size: 1.6rem !important;
+	}
+	.contact-getintouch-width{
+		width: 100% !important;
+	
+
+		padding-left: 0px !important;
+		padding-right: 0px !important;
 		
 	}	
 
@@ -88,8 +97,7 @@
 		margin-top: 60px;
 		padding-left: 0px;
 		padding-right: 0px;
-		margin-left: 8.8% !important;
-		margin-right:8.8%!important;
+		
 		
 	}
 
@@ -138,6 +146,27 @@
 		text-align: center;
 		padding:10px;
 	}
+.header-on-mobile {
+	font-size: 1.2rem !important;
+
+}
+
+.header-paragraph-1-on-mobile{
+	font-size: 0.8rem !important;
+ }
+
+
+.reCaptcha-on-mobile{
+
+	transform: scale(0.8);
+	transform-origin: 0 0;
+
+}
+
+
+.button-links-on-mobile{
+	font-size: 0.6rem !important;
+}
 
 }
 

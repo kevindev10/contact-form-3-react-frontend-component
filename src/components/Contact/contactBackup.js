@@ -73,7 +73,7 @@ class Contact extends Component {
 
 
 
-    fetch('http://192.168.100.4:3001/contactUs', {
+    fetch('http://192.168.5.1:3001/contactUs', {
       method:'post',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -153,7 +153,7 @@ class Contact extends Component {
       
                         <article className='contact-getintouch-width' style={{'width':'40%'}}>
                                       
-                        <h2 className="  mb3 mt4 tl contact-headings-on-mobile" style={{'fontSize':'1.8rem' }}>
+                        <h2 className="  mb3 mt4 tl " style={{'fontSize':'1.8rem' }}>
                           CONTACT US
       
                         </h2>
@@ -218,7 +218,7 @@ class Contact extends Component {
       
       
                       <div className='contact-getfreequote-width' style={{'width':'60%'}} >
-                      <h2  className=" mb3 mt4 tl contact-headings-on-mobile" style={{'fontSize':'1.9rem', }}>GET IN TOUCH NOW!</h2>
+                      <h2  className=" mb3 mt4 tl " style={{'fontSize':'1.9rem', }}>GET IN TOUCH NOW!</h2>
 
                       <div>
 
@@ -230,7 +230,7 @@ class Contact extends Component {
 
 
                                   <article className="br2 ba  b--black-10 mv4    getfreequote-main" style={{'backgroundColor':'#FBFBFB'}} >
-                                              <main className="pa4 black-80 actual-form-padding  ">
+                                              <main className="pa4 black-80  ">
                                                   <Form
                                                 
                                                 onSubmit={this.onSubmit}
@@ -354,7 +354,13 @@ class Contact extends Component {
                                                       <div className="buttons">
                                                         <Button variant="contained"  
                                                         type="submit"
+                                                        
                                                         disabled={submitting}
+
+                                                       
+
+
+
                                                         className='button-links-on-mobile ' 
                                                         style={{'backgroundColor':'black', 'color':'white', 'fontSize':'1.0rem', 'padding':'10px 30px 10px 30px', }} 
                                                         >
