@@ -15,12 +15,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-// const onSubmit = async values => {
-//   await sleep(300);
-//   console.log(JSON.stringify(values, undefined, 2));
-//   console.log(values)
-  
-// };
+
 
 const required = value => (value ? undefined : "*Required");
 const mustBeNumber = value => (isNaN(value) ? "Must be a number" : undefined);
@@ -31,16 +26,7 @@ const composeValidators = (...validators) => value =>
 
 
 
-  // const intialState ={
-  //   sent:1,
-  //   email:'',
-  //   phone:'',
-  //   message:'',
-  //   yourName:'',
-  //   reCaptcha:'',
-    
-  // }
-
+ 
 
 
 
@@ -48,7 +34,7 @@ class Contact extends Component {
 
   constructor(props){
 		super(props);
-	// 	this.state = intialState;
+	
       this.state ={
         reCaptcha :'',
         apiResponseMessage:'',
@@ -68,9 +54,7 @@ class Contact extends Component {
   onSubmit = async values => {
    
     await sleep(300);
-    //console.log(JSON.stringify(values, undefined, 2));
-    //console.log(values)
-
+   
 
 
     fetch('http://192.168.100.4:3001/contactUs', {
@@ -89,15 +73,14 @@ class Contact extends Component {
     })
     .then(response =>response.json())
     .then(data => {
-       //console.log(data)
-       //console.log(data.msg)
+      
        if (data.success===false){
          this.setState({sent:false})
          this.setState({apiResponseMessage:data.msg})
          
 
 				this.myRef.current.scrollIntoView({ behavior: 'smooth',block: 'center',	inline: 'center'})
-				//console.log(this.state.apiResponseMessage)
+	
 				
 			}else if(data.success===true){
         this.setState({sent:true})
@@ -408,141 +391,6 @@ class Contact extends Component {
                       </div>
 
                       
-                        {/* <article className="br2 ba  b--black-10 mv4    getfreequote-main" style={{'backgroundColor':'#FBFBFB'}} >
-                        <main className="pa4 black-80  ">
-                            <Form
-                          
-                          onSubmit={this.onSubmit}
-                          render={({ handleSubmit, reset, submitting, pristine, values }) => (
-                            <form onSubmit={handleSubmit}>
-                          
-                              <Field name="name" validate={required}  >
-                                {({ input, meta }) => (
-                                  <div className="mt3 flex input-boxes-flex-on-mobile ">
-      
-                                    <label className="w-30 db  select-options-property-font" 
-                                    htmlFor="yourName"
-                                    style={{'color':'#3F1717',  'fontSize':'1.0rem'}}>
-                                    Name :
-                                    </label>
-      
-                                    <input {...input} 
-                                    type="text" 
-                                    
-                                    className="input-box-styling instead-of-gray br2 shadow-5 pa3 input-reset ba bg-transparent hover-bg-black hover-white w-70" 
-                                    style={{ 'fontSize':'1.0rem'}}
-                                    />
-                                    {meta.error && meta.touched && <span className='meta-era'>{meta.error}</span>}
-                                  </div>
-                                )}
-                              </Field>
-      
-                              
-                              <Field name="email" validate={required}  >
-                                {({ input, meta }) => (
-                                  <div className="mt3 flex input-boxes-flex-on-mobile">
-      
-                                    <label className="w-30 db  select-options-property-font"
-                                    htmlFor="email-address" 
-                                    style={{'color':'#3F1717',  'fontSize':'1.0rem'}}>
-                                    Email :
-                                    </label>
-      
-                                    <input {...input} 
-                                    type="text" 
-                                    
-                                    className=" input-box-styling  instead-of-gray br2 shadow-5 pa3 input-reset ba bg-transparent hover-bg-black hover-white w-70" 
-                                    />
-                                    {meta.error && meta.touched && <span className='meta-era'>{meta.error}</span>}
-                                  </div>
-                                )}
-                              </Field>
-                              
-      
-      
-      
-      
-                            <Field  name="phone" validate={composeValidators(required, mustBeNumber)}
-                            >
-      
-                              {({ input, meta }) => (
-                                <div  className="mv3 flex input-boxes-flex-on-mobile">
-      
-                                  <label
-                                  className="w-30 db  select-options-property-font " 
-                                  htmlFor="phone"
-                                  style={{'color':'#3F1717',  'fontSize':'1.0rem'}}>
-                                  Phone No. :
-                                  </label>
-                                  <input {...input}
-                                  type="text" 
-                                  
-                                  className="input-box-styling  instead-of-gray br2 shadow-5 pa3 input-reset ba bg-transparent hover-bg-black hover-white w-70 " 
-                                  />
-                                  {meta.error && meta.touched && <span className='meta-era'>{meta.error}</span>}
-                                </div>
-                              )}
-                            </Field>
-      
-      
-                          
-                            <Field name="message" validate={required}>
-                              {({ input, meta }) => (
-                                <div  className="mt4" >
-      
-                                  <label className="db   f4 pb3 select-options-property-font"
-                                  htmlFor="message" 
-                                  style={{'color':'#3F1717',  'fontSize':'1.0rem'}}>
-                                  
-                                  </label>
-                                <textarea {...input}
-                                  type="text"
-                                  placeholder="Your message"
-                                  className="input-box-styling tl  br2 shadow-5  instead-of-gray  pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                                  rows="15" 
-                                  cols="50" />
-                                  {meta.error && meta.touched && <span className='meta-era'>{meta.error}</span>}
-                                </div>
-                              )}
-                            </Field>
-
-
-
-
-                            
-                            <p className=' red pv4 dim  fw8' style={{ 'fontSize':'1.0rem'}}>* Fill in all details before sending.</p>
-                            <h2 ref={this.myRef}  className=' orange tl dim fw8' style={{'fontSize':'1.0rem'}}>{this.state.apiResponseMessage}</h2>	
-                            
-                            <div className='pt2 pb4'>
-                                <ReCAPTCHA
-                                  sitekey="6LegIIMcAAAAAOC219gt52xjBR1lzsdDDHTyzP4o"
-                                  onChange={this.onReCaptureChange}
-                                  ref={e => (this.captcha = e)}
-                                />
-
-                            </div>
-
-                           
-
-
-
-                      <div className="buttons">
-                        <Button variant="contained"  
-                        type="submit"
-                        disabled={submitting}
-                        className='button-links-on-mobile ' 
-                        style={{'backgroundColor':'black', 'color':'white', 'fontSize':'1.0rem', 'padding':'10px 30px 10px 30px', }} 
-                        >
-                          SEND
-                        </Button>
-                        
-                      </div>
-                      
-                    </form>
-                  )}
-                />
-                  </main>
-                </article> */}
       
               </div>  
               </div>
