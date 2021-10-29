@@ -38,7 +38,8 @@ class Contact extends Component {
       this.state ={
         reCaptcha :'',
         apiResponseMessage:'',
-        sent:false
+        sent:false,
+        loading:false
       }
       this.myRef = React.createRef();
 		
@@ -55,7 +56,8 @@ class Contact extends Component {
    
     await sleep(300);
    
-
+    
+    this.setState({loading:true});
 
     fetch('http://192.168.100.4:3001/contactUs', {
       method:'post',
@@ -71,9 +73,15 @@ class Contact extends Component {
      
       })
     })
+     
     .then(response =>response.json())
+    // .then(response =>{
+    //   response.json()
+    //   this.setState({loading:false});
+    // })
+
     .then(data => {
-      
+      this.setState({loading:false})
        if (data.success===false){
          this.setState({sent:false})
          this.setState({apiResponseMessage:data.msg})
@@ -340,8 +348,12 @@ class Contact extends Component {
                                                         disabled={submitting}
                                                         className='button-links-on-mobile ' 
                                                         style={{'backgroundColor':'black', 'color':'white', 'fontSize':'1.0rem', 'padding':'10px 30px 10px 30px', }} 
+                                                        
                                                         >
-                                                          SEND
+                                                          {this.state.loading && <i class="fas fa-spinner fa-spin fa-2x ph3"></i>}
+                                                          {this.state.loading && <span>SENDING......</span>}
+                                                          {!this.state.loading && <span>SEND</span>}
+                                                          
                                                         </Button>
                                                         
                                                       </div>
